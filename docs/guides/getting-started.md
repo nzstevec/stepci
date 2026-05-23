@@ -5,7 +5,7 @@
     **Using [Node.js](https://nodejs.org/en/)**
 
     ```
-    npm install -g stepci
+    npm install -g @steve.clogic/stepci
     ```
 
     > Make sure you're using the LTS version of Node.js

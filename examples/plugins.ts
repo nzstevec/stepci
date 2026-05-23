@@ -1,7 +1,7 @@
 import Ajv from 'ajv'
-import { CapturesStorage } from '@stepci/runner/dist/utils/runner'
-import { WorkflowConfig, WorkflowOptions, StepRunResult } from '@stepci/runner/dist'
-import { Matcher, checkResult } from '@stepci/runner/dist/matcher'
+import { CapturesStorage } from '@steve.clogic/runner/dist/utils/runner'
+import { WorkflowConfig, WorkflowOptions, StepRunResult } from '@steve.clogic/runner/dist'
+import { Matcher, checkResult } from '@steve.clogic/runner/dist/matcher'
 
 export type YourPlugin = {
   id: "@yourcompany/plugin"

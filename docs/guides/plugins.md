@@ -27,9 +27,9 @@ tests:
 
 ```ts
 import Ajv from 'ajv'
-import { CapturesStorage } from '@stepci/runner/dist/utils/runner'
-import { WorkflowConfig, WorkflowOptions, StepRunResult } from '@stepci/runner/dist'
-import { Matcher, checkResult } from '@stepci/runner/dist/matcher'
+import { CapturesStorage } from '@steve.clogic/runner/dist/utils/runner'
+import { WorkflowConfig, WorkflowOptions, StepRunResult } from '@steve.clogic/runner/dist'
+import { Matcher, checkResult } from '@steve.clogic/runner/dist/matcher'
 
 export type YourPlugin = {
   id: "@yourcompany/plugin"
@@ -70,9 +70,9 @@ export default async function (
 ```ts
 import Ajv from 'ajv'
 import { CookieJar } from 'tough-cookie'
-import { CapturesStorage } from '@stepci/runner/dist/utils/runner'
-import { WorkflowConfig, WorkflowOptions } from '@stepci/runner/dist'
-import runHTTPStep, { HTTPStepBase, HTTPStepCheck } from '@stepci/runner/dist/steps/http'
+import { CapturesStorage } from '@steve.clogic/runner/dist/utils/runner'
+import { WorkflowConfig, WorkflowOptions } from '@steve.clogic/runner/dist'
+import runHTTPStep, { HTTPStepBase, HTTPStepCheck } from '@steve.clogic/runner/dist/steps/http'
 
 export type YourPlugin = {
   id: "@yourcompany/plugin"

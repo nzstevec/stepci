@@ -1,4 +1,4 @@
-import { WorkflowEnv } from '@stepci/runner'
+import { WorkflowEnv } from '@steve.clogic/runner'
 
 // Check if env format matches the convention e.g. `variable=VARIABLE`
 export const checkEnvFormat = (str: string) => str.match(/^(\w+=.+)$/)

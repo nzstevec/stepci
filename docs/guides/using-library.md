@@ -2,23 +2,23 @@
 
 Step CI runner can be used programmatically in other Node projects
 
-Install `@stepci/runner` dependency
+Install `@steve.clogic/runner` dependency
 
 ```
-npm install --save-dev @stepci/runner
+npm install --save-dev @steve.clogic/runner
 ```
 
 **Example: Run workflow from file**
 
 ```js
-import { runFromFile } from '@stepci/runner'
+import { runFromFile } from '@steve.clogic/runner'
 runFromFile('./examples/workflow.yml').then(console.log)
 ```
 
 **Example: Run workflow from config**
 
 ```js
-import { run } from '@stepci/runner'
+import { run } from '@steve.clogic/runner'
 
 const workflow = {
   version: "1.0",

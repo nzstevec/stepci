@@ -11,6 +11,7 @@ This document is an engineering-oriented reference for:
 - [2) Quick Start for Contributors](#2-quick-start-for-contributors)
 - [3) Full Supported StepCI Template Syntax](#3-full-supported-stepci-template-syntax)
 - [4) Canonical References](#4-canonical-references)
+- [5) Fork Publishing](#5-fork-publishing)
 
 ## 1) Solution Architecture
 
@@ -20,7 +21,7 @@ This document is an engineering-oriented reference for:
 CLI entrypoint (src/index.ts)
   -> yargs command parsing
     -> run/init/generate handlers
-      -> @stepci/runner (workflow execution and load testing)
+      -> @steve.clogic/runner (workflow execution and load testing)
       -> @stepci/plugin-openapi (workflow generation)
       -> render layer (src/lib/render.ts)
       -> analytics layer (src/lib/analytics.ts)
@@ -47,7 +48,7 @@ CLI entrypoint (src/index.ts)
   - Anonymous telemetry plumbing used by the CLI lifecycle
 
 - `schema.json`
-  - Generated workflow schema (derived from `@stepci/runner` typings)
+  - Generated workflow schema (derived from `@steve.clogic/runner` typings)
 
 ### 1.3 Responsibility boundaries
 
@@ -58,7 +59,7 @@ CLI entrypoint (src/index.ts)
   - Analytics wiring
   - OpenAPI-to-workflow generation command wiring
 
-- `@stepci/runner` focuses on:
+- `@steve.clogic/runner` focuses on:
   - Workflow execution semantics
   - Protocol-specific execution and checks
   - Capture/check behavior
@@ -280,3 +281,61 @@ formData:
 - Extra filter packages:
   - `https://github.com/stepci/liquidless-faker`
   - `https://github.com/stepci/liquidless-naughtystrings`
+
+## 5) Fork Publishing
+
+This fork publishes packages under the `@steve.clogic` npm scope.
+
+Package names:
+
+- `@steve.clogic/runner`
+- `@steve.clogic/stepci`
+
+Versioning approach:
+
+- Keep the upstream base version.
+- Append a fork prerelease suffix such as `-steve.0`.
+
+Publish prerequisites:
+
+1. Own or have publish access to the `@steve.clogic` npm scope.
+2. Log in with `npm login`.
+3. Build and test Runner before publishing it.
+4. Publish Runner before StepCI so the StepCI dependency resolves.
+
+Local linking workflow:
+
+```bash
+cd /home/steve/git/runner
+npm install
+npm run build
+npm link
+
+cd /home/steve/git/stepci
+npm install
+npm link @steve.clogic/runner
+npm run build
+npm run postbuild
+STEPCI_DISABLE_ANALYTICS=1 npm test
+```
+
+Manual publish order:
+
+```bash
+cd /home/steve/git/runner
+npm run build
+npm publish --access public
+
+cd /home/steve/git/stepci
+npm run build
+npm run postbuild
+npm publish --access public
+```
+
+Tester verification:
+
+```bash
+npm install -g @steve.clogic/stepci
+npm ls -g @steve.clogic/stepci @steve.clogic/runner
+stepci run workflow.yml
+```

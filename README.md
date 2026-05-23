@@ -28,7 +28,7 @@ Step CI is an open-source API Quality Assurance framework
    **Using [Node.js](https://nodejs.org/en/)**
 
     ```
-    npm install -g stepci
+    npm install -g @steve.clogic/stepci
     ```
 
     > **Note**: Make sure you're using the LTS version of Node.js
@@ -76,6 +76,50 @@ Step CI is an open-source API Quality Assurance framework
 
     Workflow passed after 0.559s
     ```
+
+## Fork Install
+
+Install the forked CLI package:
+
+```
+npm install -g @steve.clogic/stepci
+```
+
+The installed command remains `stepci`.
+
+### Verify the forked packages
+
+Verify the global install resolves the scoped CLI and runner packages:
+
+```
+npm ls -g @steve.clogic/stepci @steve.clogic/runner
+```
+
+### Minimal validation workflow
+
+Use a small workflow to confirm the forked CLI runs successfully:
+
+```yaml
+version: "1.1"
+name: Status Check
+env:
+  host: example.com
+tests:
+  example:
+    steps:
+      - name: GET request
+        http:
+          url: https://${{env.host}}
+          method: GET
+          check:
+            status: /^20/
+```
+
+Run it with:
+
+```
+stepci run workflow.yml
+```
 
 ## Documentation
 

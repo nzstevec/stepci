@@ -1,6 +1,6 @@
 {
-  "name": "stepci",
-  "version": "2.8.2",
+  "name": "@steve.clogic/stepci",
+  "version": "2.8.201",
   "description": "Automated API Testing and Quality Assurance",
   "main": "index.js",
   "bin": {
@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "@stepci/plugin-openapi": "^0.3.5",
-    "@stepci/runner": "^2.0.0",
+    "@steve.clogic/runner": "^2.0.701",
     "chalk": "^4.1.2",
     "ci-info": "^3.5.0",
     "cli-highlight": "^2.1.11",
@@ -34,7 +34,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "postbuild": "typescript-json-schema --required --esModuleInterop node_modules/@stepci/runner/dist/index.d.ts Workflow -o schema.json",
+    "postbuild": "typescript-json-schema --required --esModuleInterop node_modules/@steve.clogic/runner/dist/index.d.ts Workflow -o schema.json",
     "build:watch": "tsc -w -p tsconfig.json",
     "init": "ts-node ./src/index.ts init",
     "test": "ts-node ./src/index.ts run -v",

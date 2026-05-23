@@ -1,11 +1,11 @@
 import chalk, { Chalk } from 'chalk'
 import { highlight, Theme } from 'cli-highlight'
-import { StepResult, WorkflowResult } from '@stepci/runner'
-import { HTTPStepRequest, HTTPStepResponse } from '@stepci/runner/dist/steps/http'
-import { LoadTestResult } from '@stepci/runner/dist/loadtesting'
+import { StepResult, WorkflowResult } from '@steve.clogic/runner'
+import { HTTPStepRequest, HTTPStepResponse } from '@steve.clogic/runner/dist/steps/http'
+import { LoadTestResult } from '@steve.clogic/runner/dist/loadtesting'
 import { labels } from './../labels.json'
 import { isJSON } from './utils'
-import { CheckResult } from '@stepci/runner/dist/matcher'
+import { CheckResult } from '@steve.clogic/runner/dist/matcher'
 
 type RenderOptions = {
   verbose?: boolean | undefined

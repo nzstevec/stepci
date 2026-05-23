@@ -8,10 +8,10 @@ Step CI runner can be used directly in Bun
 
 Put your workflows under `tests/`
 
-Install `@stepci/runner` dependency
+Install `@steve.clogic/runner` dependency
 
 ```
-bun add @stepci/runner
+bun add @steve.clogic/runner
 ```
 
 ## Using in tests
@@ -20,7 +20,7 @@ bun add @stepci/runner
 
 ```js
 import { expect, test } from 'bun:test'
-import { runFromFile } from '@stepci/runner'
+import { runFromFile } from '@steve.clogic/runner'
 
 test('Check Response Status', async () => {
   const { result } = await runFromFile(new URL('tests/workflow.yml', import.meta.url))
@@ -32,7 +32,7 @@ test('Check Response Status', async () => {
 
 ```js
 import { expect, test } from 'bun:test'
-import { run } from '@stepci/runner'
+import { run } from '@steve.clogic/runner'
 
 test('Check Response Status', async () => {
   const workflow = {

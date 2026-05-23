@@ -8,10 +8,10 @@ Step CI runner can be used directly in JavaScript testing tools
 
 Put your workflows under `tests/`
 
-Install `@stepci/runner` dependency
+Install `@steve.clogic/runner` dependency
 
 ```
-npm install --save-dev @stepci/runner
+npm install --save-dev @steve.clogic/runner
 ```
 
 ## Using in tests
@@ -20,7 +20,7 @@ npm install --save-dev @stepci/runner
 
 ```js
 const assert = require('assert')
-const { runFromFile } = require('@stepci/runner')
+const { runFromFile } = require('@steve.clogic/runner')
 const path = require('path')
 
 it('Check Response Status', async () => {
@@ -33,7 +33,7 @@ it('Check Response Status', async () => {
 
 ```js
 const assert = require('assert')
-const { run } = require('@stepci/runner')
+const { run } = require('@steve.clogic/runner')
 
 it('Check Response Status', async () => {
   const workflow = {

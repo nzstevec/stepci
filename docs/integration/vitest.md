@@ -8,10 +8,10 @@ Step CI runner can be used directly in JavaScript testing tools
 
 Put your workflows under `tests/`
 
-Install `@stepci/runner` dependency
+Install `@steve.clogic/runner` dependency
 
 ```
-npm install --save-dev @stepci/runner
+npm install --save-dev @steve.clogic/runner
 ```
 
 ## Using in tests
@@ -20,7 +20,7 @@ npm install --save-dev @stepci/runner
 
 ```js
 import { expect, it } from 'vitest'
-import { runFromFile } from '@stepci/runner'
+import { runFromFile } from '@steve.clogic/runner'
 
 it('Check Response Status', async () => {
   const { result } = await runFromFile(new URL('tests/workflow.yml', import.meta.url))
@@ -32,7 +32,7 @@ it('Check Response Status', async () => {
 
 ```js
 import { expect, it } from 'vitest'
-import { run } from '@stepci/runner'
+import { run } from '@steve.clogic/runner'
 
 it('Check Response Status', async () => {
   const workflow = {

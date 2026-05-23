@@ -32,6 +32,6 @@ api_test:
   stage: test
   image: node:lts-alpine
   script:
-    - npm install -g stepci
+    - npm install -g @steve.clogic/stepci
     - stepci run tests/workflow.yml
 ```
