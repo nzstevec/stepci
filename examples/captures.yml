@@ -32,3 +32,25 @@ tests:
             headers:
               Content-Type: application/json; charset=utf-8
             body: "{}"
+
+# Planned capture mutation example for the update-capture-json change:
+#
+# tests:
+#   example:
+#     steps:
+#       - name: Fetch JSON payload
+#         http:
+#           url: https://api.example.com/profile
+#           method: GET
+#           captures:
+#             profile:
+#               jsonpath: $
+#               update:
+#                 metadata.source: stepci
+#                 metadata.env: ${{ env.host }}
+#       - name: Use updated capture
+#         http:
+#           url: https://api.example.com/audit
+#           method: POST
+#           json:
+#             profile: ${{ captures.profile }}

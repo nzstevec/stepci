@@ -910,6 +910,23 @@ captures:
     body: true
 ```
 
+### `tests.<test>.steps.[step].http.captures.<capture>.update`
+
+Optional. Apply JSON updates to the captured object before it is stored
+
+```yaml
+captures:
+  profile:
+    jsonpath: $.profile
+    update:
+      displayName: ${{ env.displayName }}
+      metadata.status: active
+```
+
+Update paths use dot notation only. Array index updates are not supported in the initial release. Duplicate paths in the same update block MUST fail validation.
+
+Update values use the same templating engine as other workflow fields, so `env`, `secrets`, `captures`, and `testdata` values can be referenced.
+
 ### `tests.<test>.steps.[step].http.check`
 
 Optional. Provide checks to validate responses
@@ -1366,6 +1383,23 @@ captures:
   id:
     jsonpath: $.id
 ```
+
+### `tests.<test>.steps.[step].grpc.captures.<capture>.update`
+
+Optional. Apply JSON updates to the captured object before it is stored
+
+```yaml
+captures:
+  message:
+    jsonpath: $.message
+    update:
+      metadata.source: grpc
+      metadata.version: ${{ env.workflowVersion }}
+```
+
+Update paths use dot notation only. Array index updates are not supported in the initial release. Duplicate paths in the same update block MUST fail validation.
+
+Update values use the same templating engine as other workflow fields, so `env`, `secrets`, `captures`, and `testdata` values can be referenced.
 
 ### `tests.<test>.steps.[step].grpc.check`
 

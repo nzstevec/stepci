@@ -75,3 +75,7 @@ Additionally, some extra filters are included:
 
 - [fake](https://github.com/stepci/liquidless-faker)
 - [naughtystring](https://github.com/stepci/liquidless-naughtystrings)
+
+### Capture update values
+
+Capture update blocks use the same templating evaluation rules as other StepCI fields. Update values can reference `env`, `secrets`, `captures`, and `testdata` before the resulting capture object is stored.
