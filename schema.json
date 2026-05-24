@@ -4373,6 +4373,9 @@
                             "if": {
                                 "type": "string"
                             },
+                            "log": {
+                                "type": "string"
+                            },
                             "name": {
                                 "type": "string"
                             },
@@ -5323,6 +5326,9 @@
                                 "type": "string"
                             },
                             "if": {
+                                "type": "string"
+                            },
+                            "log": {
                                 "type": "string"
                             },
                             "name": {
@@ -6932,6 +6938,9 @@
                                     "type": "string"
                                 },
                                 "if": {
+                                    "type": "string"
+                                },
+                                "log": {
                                     "type": "string"
                                 },
                                 "name": {
