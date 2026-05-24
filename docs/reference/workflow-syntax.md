@@ -736,6 +736,17 @@ json:
   body: This is the body
   userId: 1
 ```
+Full-template expressions preserve runtime types in JSON fields. This allows direct object and scalar pass-through from captures.
+
+```yaml
+json: ${{captures.thebody}}
+```
+
+```yaml
+json:
+  id: ${{captures.organisationId}} # number stays number
+  note: scalar-${{captures.organisationId}} # mixed template stays string
+```
 
 ### `tests.<test>.steps.[step].http.form`
 

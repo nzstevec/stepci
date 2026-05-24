@@ -79,3 +79,13 @@ Additionally, some extra filters are included:
 ### Capture update values
 
 Capture update blocks use the same templating evaluation rules as other StepCI fields. Update values can reference `env`, `secrets`, `captures`, and `testdata` before the resulting capture object is stored.
+
+### Typed JSON full-expression templates
+
+When an HTTP `json` field value is a full template expression (for example, `${{captures.thebody}}`), StepCI preserves the resolved runtime type.
+
+- Object values stay objects and can be passed through directly
+- Number/boolean/null values stay scalar JSON types
+- Mixed templates that include additional literal text (for example, `prefix-${{captures.id}}`) remain strings
+
+If a full-expression value in an HTTP `json` field resolves to an unsupported or undefined value, the step fails with an actionable serialization error.

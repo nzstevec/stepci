@@ -1,0 +1,65 @@
+version: "1.1"
+name: Mock Organisation API
+env:
+  host: localhost:3001
+tests:
+  example:
+    steps:
+      - name: Create organisation
+        http:
+          url: http://${{env.host}}/organisation
+          method: POST
+          headers:
+            Content-Type: application/json
+          json:
+            name: Example Organisation
+            shortName: EXORG
+            emailAddress: contact@example.org
+          captures:
+            organisationId:
+              jsonpath: $.id
+          check:
+            status: 201
+            jsonpath:
+              $.id:
+                - isNumber: true
+              $.name: Example Organisation
+              $.shortName: EXORG
+              $.emailAddress: contact@example.org
+
+      - name: Get organisation by id
+        http:
+          url: http://${{env.host}}/organisation/${{captures.organisationId}}
+          method: GET
+          captures:
+            organisation:
+              jsonpath: $
+              update:
+                shortName: EXORG-UPDATED
+          check:
+            status: 200
+            jsonpath:
+              $.id:
+                - isNumber: true
+              $.name: Example Organisation
+              $.shortName: EXORG
+              $.emailAddress: contact@example.org
+
+      - name: Create new organisation
+        http:
+          url: http://${{env.host}}/organisation
+          method: POST
+          headers:
+            Content-Type: application/json
+          json: ${{captures.organisation}}
+          captures:
+            organisationId:
+              jsonpath: $.id
+          check:
+            status: 201
+            jsonpath:
+              $.id:
+                - isNumber: true
+              $.name: Example Organisation
+              $.shortName: EXORG-UPDATED
+              $.emailAddress: contact@example.org
