@@ -18,6 +18,10 @@ let verbose: boolean | undefined = false
 renderAnalyticsMessage()
 
 const ee = new EventEmitter()
+ee.on('step:log', ({ message }: { message: string }) => {
+  console.log(message)
+})
+
 ee.on('test:result', (test: TestResult) => {
   console.log(`${(test.passed ? chalk.bgGreenBright(' PASS ') : chalk.bgRedBright(' FAIL '))} ${chalk.bold(test.name || test.id)} ⏲ ${test.duration / 1000 + 's'} ${chalk.magenta('⬆')} ${test.bytesSent} bytes ${chalk.cyan('⬇')} ${test.bytesReceived} bytes`)
   if (!test.passed || verbose) {
@@ -74,6 +78,12 @@ yargs(hideBin(process.argv))
         describe: 'number of concurrency executions',
         type: 'number'
       })
+      .option('test', {
+        alias: 't',
+        demandOption: false,
+        describe: 'run only a specific named test in the workflow',
+        type: 'string'
+      })
       .check(({ e: envs, s: secrets }) => {
         if (checkOptionalEnvArrayFormat(envs)) {
           throw new Error('env variables have wrong format, use `env=VARIABLE`.')
@@ -101,12 +111,18 @@ yargs(hideBin(process.argv))
       return
     }
 
-    runFromFile(argv.workflow, {
-      env: parseEnvArray(argv.e),
-      secrets: parseEnvArray(argv.s),
-      ee,
-      concurrency: argv.concurrency
-    })
+    try {
+      await runFromFile(argv.workflow, {
+        env: parseEnvArray(argv.e),
+        secrets: parseEnvArray(argv.s),
+        ee,
+        concurrency: argv.concurrency,
+        tests: argv.test
+      } as any)
+    } catch (error) {
+      console.error(chalk.redBright((error as Error).message))
+      exit(5)
+    }
   })
   .command('generate [spec] [path]', 'generate workflow from OpenAPI spec', yargs => {
     return yargs

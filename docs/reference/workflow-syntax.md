@@ -515,6 +515,14 @@ Optional. Step id
 
 Optional. Step name
 
+### `tests.<test>.steps.[step].log`
+
+Optional. Print a message before the step executes.
+
+```yaml
+log: Starting user creation flow for ${{env.user}}
+```
+
 ### `tests.<test>.steps.[step].if`
 
 Optional. Condition. For Syntax, see [Filtrex Documentation](https://github.com/joewalnes/filtrex#expressions)

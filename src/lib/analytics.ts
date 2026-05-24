@@ -14,9 +14,13 @@ const posthog = new PostHog(
   { host: 'https://eu.posthog.com' }
 )
 
-export function sendAnalyticsEvent () {
-  if (!process.env.STEPCI_DISABLE_ANALYTICS) {
-    posthog.capture({
+export function shouldSendAnalytics(env: NodeJS.ProcessEnv = process.env) {
+  return Boolean(env.STEPCI_ENABLE_ANALYTICS)
+}
+
+export function sendAnalyticsEvent (client: Pick<PostHog, 'capture'> = posthog) {
+  if (shouldSendAnalytics()) {
+    client.capture({
       distinctId: uid as string,
       event: 'ping',
       properties: {

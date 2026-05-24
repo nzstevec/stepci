@@ -3,7 +3,7 @@
 The following documents every command and flag available for use in Step CI command-line interface.
 
 ::: info
-The CLI collects anonymous usage data. You can disable this by setting `STEPCI_DISABLE_ANALYTICS` environment variable
+The CLI sends anonymous usage data only when `STEPCI_ENABLE_ANALYTICS` is set.
 :::
 
 ## Synopsis
@@ -70,6 +70,7 @@ The `run` command lets you run a specified workflow
 | --verbose [-v] | No | Verbose mode: always show request/response |
 | --loadtest [-load] | No | Run test in load-testing mode |
 | --concurrency | No | Concurrency setting |
+| --test [-t] | No | Run only a specific named test from `tests.<name>` |
 
 #### **Examples**
 
@@ -87,6 +88,12 @@ Steps: 0 failed, 1 passed, 1 total
 Time:  0.524s, estimated 1s
 
 Workflow passed after 0.524s
+```
+
+Run only a single named test from a multi-test workflow
+
+```
+stepci run workflow.yml --test example
 ```
 
 ### `generate [spec] [path]`
@@ -170,6 +177,6 @@ stepci --version
 
 ## Environment Variables
 
-### `STEPCI_DISABLE_ANALYTICS`
+### `STEPCI_ENABLE_ANALYTICS`
 
-Set this environment variable to disable anonymous usage data collection
+Set this environment variable to enable anonymous usage data collection

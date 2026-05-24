@@ -10,5 +10,5 @@ By default, the CLI collects anonymous usage data, which includes:
 - Environment (Local, Docker, CI/CD)
 
 ::: info
-The usage analytics can be disabled by setting `STEPCI_DISABLE_ANALYTICS` environment variable
+The usage analytics is disabled by default and can be enabled by setting `STEPCI_ENABLE_ANALYTICS` environment variable
 :::

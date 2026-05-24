@@ -201,8 +201,8 @@ export function renderFeedbackMessage () {
 }
 
 export function renderAnalyticsMessage () {
-  if (!process.env.STEPCI_DISABLE_ANALYTICS) {
-    console.log(chalk.gray(`\nⓘ  Anonymous usage data collected. Learn more on https://step.ci/privacy\n`))
+  if (process.env.STEPCI_ENABLE_ANALYTICS) {
+    console.log(chalk.gray(`\nⓘ  Anonymous usage data enabled. Learn more on https://step.ci/privacy\n`))
   }
 }
 
