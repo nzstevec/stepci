@@ -1,6 +1,6 @@
 {
   "name": "@steve.clogic/stepci",
-  "version": "2.8.204",
+  "version": "2.8.205",
   "description": "Automated API Testing and Quality Assurance",
   "main": "index.js",
   "bin": {
@@ -12,7 +12,7 @@
   "dependencies": {
     "@stepci/plugin-openapi": "^0.3.5",
     "@steve.clogic/runner": "^2.0.703",
-    "@steve.clogic/stepci": "^2.8.204",
+    "@steve.clogic/stepci": "^2.8.205",
     "chalk": "^4.1.2",
     "ci-info": "^3.5.0",
     "cli-highlight": "^2.1.11",
