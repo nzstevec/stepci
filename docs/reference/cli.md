@@ -70,7 +70,7 @@ The `run` command lets you run a specified workflow
 | --verbose [-v] | No | Verbose mode: always show request/response |
 | --loadtest [-load] | No | Run test in load-testing mode |
 | --concurrency | No | Concurrency setting |
-| --test [-t] | No | Run only a specific named test from `tests.<name>` |
+| --test [-t] | No | Run only a specific named test from `tests.<name>` (omit to run all named tests) |
 
 #### **Examples**
 
@@ -94,6 +94,12 @@ Run only a single named test from a multi-test workflow
 
 ```
 stepci run workflow.yml --test example
+```
+
+Run all named tests by omitting `--test`
+
+```
+stepci run workflow.yml
 ```
 
 ### `generate [spec] [path]`

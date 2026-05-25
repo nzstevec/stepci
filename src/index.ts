@@ -81,7 +81,7 @@ yargs(hideBin(process.argv))
       .option('test', {
         alias: 't',
         demandOption: false,
-        describe: 'run only a specific named test in the workflow',
+        describe: 'run only a specific named test in the workflow (omit to run all named tests)',
         type: 'string'
       })
       .check(({ e: envs, s: secrets }) => {

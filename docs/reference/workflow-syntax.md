@@ -519,6 +519,10 @@ Optional. Step name
 
 Optional. Print a message before the step executes.
 
+`log` values support template expressions and are rendered with the same context as other step fields.
+
+The resolved log line is printed before the step action (for example, before an HTTP request is sent).
+
 ```yaml
 log: Starting user creation flow for ${{env.user}}
 ```
@@ -945,6 +949,27 @@ captures:
 Update paths use dot notation only. Array index updates are not supported in the initial release. Duplicate paths in the same update block MUST fail validation.
 
 Update values use the same templating engine as other workflow fields, so `env`, `secrets`, `captures`, and `testdata` values can be referenced.
+
+Updated captures can be reused directly in later steps, including full-object JSON pass-through:
+
+```yaml
+steps:
+  - name: Get profile
+    http:
+      url: http://localhost:3001/profile
+      method: GET
+      captures:
+        profile:
+          jsonpath: $.profile
+          update:
+            displayName: ${{env.displayName}}
+
+  - name: Reuse updated capture
+    http:
+      url: http://localhost:3001/profile
+      method: POST
+      json: ${{captures.profile}}
+```
 
 ### `tests.<test>.steps.[step].http.check`
 

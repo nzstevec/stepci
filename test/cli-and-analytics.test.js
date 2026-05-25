@@ -120,6 +120,29 @@ tests:
   })
 }
 
+async function testRunWithoutTestFilterRunsAll() {
+  const yaml = `version: "1.1"
+name: Filter Omitted
+
+tests:
+  alpha:
+    steps:
+      - name: alpha-step
+        delay: 1ms
+  beta:
+    steps:
+      - name: beta-step
+        delay: 1ms
+`
+
+  await withTempWorkflow(yaml, async (workflowPath) => {
+    const result = await runCli(['run', workflowPath, '--verbose'])
+    assert.strictEqual(result.code, 0)
+    assert.ok(result.stdout.includes('PASS  alpha'), 'alpha test should run when filter is omitted')
+    assert.ok(result.stdout.includes('PASS  beta'), 'beta test should run when filter is omitted')
+  })
+}
+
 async function testRunWithMissingTestFails() {
   const yaml = `version: "1.1"
 name: Missing
@@ -180,6 +203,7 @@ async function run() {
   await testAnalyticsDisabledByDefault()
   await testAnalyticsEnabledSendsEvent()
   await testRunWithTestFilter()
+  await testRunWithoutTestFilterRunsAll()
   await testRunWithMissingTestFails()
   await testStepLogOutputWithTemplate()
   console.log('cli-and-analytics tests passed')
