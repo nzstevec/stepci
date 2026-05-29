@@ -15,6 +15,18 @@ import { sendAnalyticsEvent } from './lib/analytics'
 
 let verbose: boolean | undefined = false
 
+const runOptionsHelp = `
+Run command options:
+  --env, -e          Supply environment variables (can be defined multiple times)
+  --secret, -s       Supply secret variables (can be defined multiple times)
+  --verbose, -v      Verbose mode: always show request/response
+  --loadtest, --load Run workflow in load-testing mode
+  --concurrency      Number of concurrency executions
+  --test, -t         Run only a specific named test in the workflow (omit to run all named tests)
+
+Use 'stepci run --help' to see command-specific help output.
+`
+
 renderAnalyticsMessage()
 
 const ee = new EventEmitter()
@@ -192,6 +204,7 @@ tests:
     fs.writeFileSync(argv.path, defaultWorkflow)
     console.log(`${chalk.greenBright('Success!')} The workflow file can be found at ${argv.path}\nEnter ${chalk.grey('npx stepci run ' + argv.path)} to run it`)
   })
+  .epilog(runOptionsHelp)
   .command(['$0'], false, () => {}, () => console.log(defaultText))
   .parse()
 
